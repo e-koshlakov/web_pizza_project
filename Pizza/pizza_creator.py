@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
-from pizza_product import MenuPizza, OwnPizza
+from Pizza.pizza_product import MenuPizza, OwnPizza
 import json
+import time
 
 
 class PizzaCreator(ABC):
@@ -35,7 +36,7 @@ class CreateMenuPizza(PizzaCreator):
         menu_pizza = {order: MenuPizza.menu[order]}
         menu_pizza[order][2].extend(MenuPizza.additional_ingredients)
         if menu_pizza:
-            with open("orders.json", 'w', encoding='utf-8') as fp:
+            with open(f"Pizza/orders/{round(time.time(), 2)}_{order}.json", 'w', encoding='utf-8') as fp:
                 json.dump(menu_pizza, fp, ensure_ascii=False, indent=2)
         return "Заказ сохранен в файл orders.json"
 
@@ -53,6 +54,6 @@ class CreateOwnPizza(PizzaCreator):
     def save_order_to_json(self, order):
         own_pizza = OwnPizza().bake_pizza(order)[1]
         if own_pizza:
-            with open("orders.json", "w", encoding='utf-8') as fp:
+            with open(f"Pizza/orders/{round(time.time(), 2)}_{order}.json", "w", encoding='utf-8') as fp:
                 json.dump(own_pizza, fp, ensure_ascii=False, indent=2)
         return "Заказ сохранен в файл orders.json"
