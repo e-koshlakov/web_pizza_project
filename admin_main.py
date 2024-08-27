@@ -1,4 +1,4 @@
-from Change_Pizza import ChangePizza
+from Pizza.Change_Pizza import ChangePizza
 
 pizza_changer = ChangePizza('Грибная')
 print(pizza_changer.set_new_cost_price('Грибная', 200))
