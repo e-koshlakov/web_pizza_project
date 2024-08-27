@@ -1,4 +1,4 @@
-from pizza_product import MenuPizza
+from Pizza.pizza_product import MenuPizza
 
 
 class ChangePizza:
